@@ -7,11 +7,12 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class GithubService {
-  private username:string = 'ksukoz'
+  private username:string = 'bradtraversy'
 
   constructor(private http: HttpClient) { }
 
   getUser() {
-    this.http.get('https://api.github.com/users/' + this.username)
+    return this.http.get('//api.github.com/users/' + this.username)
+      .pipe(map(res=> res))
   }
 }

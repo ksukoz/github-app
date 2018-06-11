@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { GithubService } from '../../services/github.service';
+import 'rxjs';
 
 @Component({
   selector: 'app-github',
@@ -11,7 +12,10 @@ export class GithubComponent implements OnInit {
   user:any;
 
   constructor(private githubService: GithubService) { 
-    this.githubService.getUser()
+    this.githubService.getUser().subscribe(user => {
+      this.user = user
+    console.log(this.user)
+    });
   }
 
   ngOnInit() {
