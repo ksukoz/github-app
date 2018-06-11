@@ -11,13 +11,17 @@ import 'rxjs';
 export class GithubComponent implements OnInit {
   user:any;
   repos:any;
+  username:string;
 
   constructor(private githubService: GithubService) { 
     this.githubService.getUser().subscribe(user => this.user = user);
-    this.githubService.getRepos().subscribe(repos => {
-      this.repos = repos
-      console.log(this.repos)
-    });
+    this.githubService.getRepos().subscribe(repos => this.repos = repos);
+  }
+
+  search() {
+    this.githubService.updateUsername(this.username);
+    this.githubService.getUser().subscribe(user => this.user = user);
+    this.githubService.getRepos().subscribe(repos => this.repos = repos);
   }
 
   ngOnInit() {
