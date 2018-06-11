@@ -15,4 +15,9 @@ export class GithubService {
     return this.http.get('//api.github.com/users/' + this.username)
       .pipe(map(res=> res))
   }
+
+  getRepos() {
+    return this.http.get('//api.github.com/users/' + this.username + '/repos')
+      .pipe(map(res=> res))
+  }
 }
